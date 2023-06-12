@@ -7,19 +7,20 @@ const rainbowBtn = document.getElementById('rainbow-color');
 const blackBtn = document.getElementById('black-color');
 
 canvasDimensions(16);
+blackBtn.style.backgroundColor = 'yellow';
 
-allSquares.forEach(sqr => sqr.addEventListener('mouseover', function() {
-    if (colorMode == 'black') {
-        this.style.backgroundColor = 'black';
-    } else if (colorMode == 'rainbow') {
-        this.style.backgroundColor = `hsl(${hslWheel} 100% 50%)`;
-        hslWheel += 15;
-        if (hslWheel > 360) {hslWheel = 0}
-        console.log(hslWheel)
-    }
-}));
+allSquares.forEach(sqr => sqr.addEventListener('mouseover', differentColors));
 resetBtn.addEventListener('mousedown', resetCanvas);
-rainbowBtn.addEventListener('mousedown', rainbowColor);
+rainbowBtn.addEventListener('mousedown', function() {
+    rainbowBtn.style.backgroundColor = 'yellow';
+    colorMode = 'rainbow'
+    blackBtn.style.backgroundColor = 'white';
+});
+blackBtn.addEventListener('mousedown', function() {
+    rainbowBtn.style.backgroundColor = 'white';
+    colorMode = 'black'
+    blackBtn.style.backgroundColor = 'yellow';
+});
 
 function canvasDimensions(squares) {
     for (let i=0; i<squares**2; i++) {
@@ -34,6 +35,7 @@ function canvasDimensions(squares) {
 }
 
 function resetCanvas() {
+    hslWheel = 0;
     for (let i=0; i<allSquares.length; i++) {
         allSquares[i].style.backgroundColor = 'white';
     }
@@ -43,7 +45,12 @@ function resetCanvas() {
     });
 }
 
-function rainbowColor() {
-    colorMode = 'rainbow'
-    rainbowBtn.style.backgroundColor = 'yellow';
+function differentColors() {
+    if (colorMode == 'black') {
+        this.style.backgroundColor = 'black';
+    } else if (colorMode == 'rainbow') {
+        this.style.backgroundColor = `hsl(${hslWheel} 100% 50%)`;
+        hslWheel += 15;
+        if (hslWheel > 360) {hslWheel = 0}
+    }
 }
