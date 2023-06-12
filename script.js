@@ -2,9 +2,10 @@ let allSquares;
 let colorMode = 'black';
 let hslWheel = 0;
 const contain = document.querySelector('.square-container');
-const resetBtn = document.getElementById('reset-b');
+const resetBtn = document.getElementById('reset');
 const rainbowBtn = document.getElementById('rainbow-color');
 const blackBtn = document.getElementById('black-color');
+const eraserBtn = document.getElementById('eraser');
 
 canvasDimensions(16);
 blackBtn.style.backgroundColor = 'yellow';
@@ -12,14 +13,22 @@ blackBtn.style.backgroundColor = 'yellow';
 allSquares.forEach(sqr => sqr.addEventListener('mouseover', differentColors));
 resetBtn.addEventListener('mousedown', resetCanvas);
 rainbowBtn.addEventListener('mousedown', function() {
-    rainbowBtn.style.backgroundColor = 'yellow';
-    colorMode = 'rainbow'
     blackBtn.style.backgroundColor = 'white';
+    eraserBtn.style.backgroundColor = 'white';
+    colorMode = 'rainbow'
+    rainbowBtn.style.backgroundColor = 'yellow';
 });
 blackBtn.addEventListener('mousedown', function() {
     rainbowBtn.style.backgroundColor = 'white';
+    eraserBtn.style.backgroundColor = 'white';
     colorMode = 'black'
     blackBtn.style.backgroundColor = 'yellow';
+});
+eraserBtn.addEventListener('mousedown', function() {
+    rainbowBtn.style.backgroundColor = 'white';
+    blackBtn.style.backgroundColor = 'white';
+    colorMode = 'white'
+    eraserBtn.style.backgroundColor = 'yellow';
 });
 
 function canvasDimensions(squares) {
@@ -52,5 +61,7 @@ function differentColors() {
         this.style.backgroundColor = `hsl(${hslWheel} 100% 50%)`;
         hslWheel += 15;
         if (hslWheel > 360) {hslWheel = 0}
+    } else if (colorMode == 'white') {
+        this.style.backgroundColor = 'white';
     }
 }
