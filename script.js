@@ -1,9 +1,11 @@
 let allSquares;
 const contain = document.querySelector('.square-container');
+const resetBtn = document.getElementById('reset');
 
 canvasDimensions(16);
 
 allSquares.forEach(sqr => sqr.addEventListener('mouseover', colorChange));
+resetBtn.addEventListener('click', resetCanvas);
 
 function canvasDimensions(squares) {
     for (let i=0; i<squares**2; i++) {
@@ -19,4 +21,10 @@ function canvasDimensions(squares) {
 
 function colorChange() {
     this.style.backgroundColor = 'black';
+}
+
+function resetCanvas() {
+    for (let i=0; i<allSquares.length; i++) {
+        allSquares[i].style.backgroundColor = 'white';
+    }
 }

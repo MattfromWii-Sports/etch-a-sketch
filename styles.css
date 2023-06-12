@@ -11,7 +11,17 @@ body {
 .sidebar {
     width: 200px;
     height: 300px;
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+}
+.sidebar > button {
+    border: 2px solid black;
+    font-size: 18px;
+    padding: 10px 0;
+    width: 160px;
 }
 .filler {
     width: 200px;
@@ -26,6 +36,8 @@ body {
 
 /*Individual Squares*/
 .square {
+    padding: 0;
+    margin: 0;
     outline: 1px solid rgba(78, 73, 73, 0.705);
-
+    background-color: white;
 }
