@@ -1,5 +1,4 @@
 let allSquares;
-let oldDimension = 0;
 let colorMode = 'black';
 let hslWheel = 0;
 const contain = document.querySelector('.square-container');
@@ -31,9 +30,7 @@ eraserBtn.addEventListener('mousedown', function() {
 });
 
 function canvasDimensions(squares) {
-    for (let i=0; i<oldDimension**2; i++) {
-        allSquares[i].remove();
-    }
+    while (contain.firstChild) {contain.removeChild(contain.lastChild)};
     for (let i=0; i<squares**2; i++) {
         const temp = document.createElement('div');
         temp.classList.add('square');
@@ -44,7 +41,6 @@ function canvasDimensions(squares) {
     }
     allSquares = document.querySelectorAll('.square');
     colorMode = 'black';
-    oldDimension = squares;
     blackBtn.style.backgroundColor = 'yellow';
     allSquares.forEach(sqr => sqr.addEventListener('mouseover', differentColors));
 }
