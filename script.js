@@ -65,8 +65,8 @@ function promptCheck() {
     } else if (userPrompt <= 0) {
         alert('Please input A Number greater then 0');
         promptCheck();
-    } else if (userPrompt > 80) {
-        alert('Please input A Number less then or equal to 80');
+    } else if (userPrompt > 64) {
+        alert('Please input A Number less then or equal to 64');
         promptCheck();
     }
     canvasDimensions(userPrompt);
